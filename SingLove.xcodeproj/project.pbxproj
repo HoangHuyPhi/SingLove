@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A79F33C2453BF4700EA1860 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79F33B2453BF4700EA1860 /* MainViewController.swift */; };
+		3A79F33F2453C7E500EA1860 /* MainBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79F33E2453C7E500EA1860 /* MainBottomControlsStackView.swift */; };
+		3A79F3412453CEFB00EA1860 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79F3402453CEFB00EA1860 /* TopNavigationStackView.swift */; };
 		3A8A32A6245053A1003DAA2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A32A5245053A1003DAA2E /* AppDelegate.swift */; };
 		3A8A32A8245053A1003DAA2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A32A7245053A1003DAA2E /* SceneDelegate.swift */; };
 		3A8A32AA245053A1003DAA2E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A32A9245053A1003DAA2E /* LoginViewController.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A79F33B2453BF4700EA1860 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3A79F33E2453C7E500EA1860 /* MainBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomControlsStackView.swift; sourceTree = "<group>"; };
+		3A79F3402453CEFB00EA1860 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		3A8A32A2245053A1003DAA2E /* SingLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SingLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8A32A5245053A1003DAA2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A8A32A7245053A1003DAA2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,9 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A79F33D2453C7AA00EA1860 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A79F33E2453C7E500EA1860 /* MainBottomControlsStackView.swift */,
+				3A79F3402453CEFB00EA1860 /* TopNavigationStackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3A8A3299245053A1003DAA2E = {
 			isa = PBXGroup;
 			children = (
+				3A79F33D2453C7AA00EA1860 /* Views */,
 				3A8A32A4245053A1003DAA2E /* SingLove */,
 				3A8A32A3245053A1003DAA2E /* Products */,
 			);
@@ -60,6 +76,7 @@
 		3A8A32A4245053A1003DAA2E /* SingLove */ = {
 			isa = PBXGroup;
 			children = (
+				3A79F33B2453BF4700EA1860 /* MainViewController.swift */,
 				3A8A32B924505C69003DAA2E /* UIView-Layout.swift */,
 				3A8A32A5245053A1003DAA2E /* AppDelegate.swift */,
 				3A8A32A7245053A1003DAA2E /* SceneDelegate.swift */,
@@ -145,8 +162,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8A32AA245053A1003DAA2E /* LoginViewController.swift in Sources */,
+				3A79F33F2453C7E500EA1860 /* MainBottomControlsStackView.swift in Sources */,
 				3A8A32A6245053A1003DAA2E /* AppDelegate.swift in Sources */,
+				3A79F3412453CEFB00EA1860 /* TopNavigationStackView.swift in Sources */,
 				3A8A32BA24505C69003DAA2E /* UIView-Layout.swift in Sources */,
+				3A79F33C2453BF4700EA1860 /* MainViewController.swift in Sources */,
 				3A8A32A8245053A1003DAA2E /* SceneDelegate.swift in Sources */,
 				3A8A32BC2450620B003DAA2E /* CustomTextField.swift in Sources */,
 			);
