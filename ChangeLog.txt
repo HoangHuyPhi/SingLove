@@ -1,0 +1,10 @@
+
+April 25 2020: 
+Starting Xcode, setting up the environment. 
+Developing Main View Controller to include buttons.
+Developing LoginViewController to include user name, password, image. 
+
+May 13 2020: 
+Learning and applying MVVM model, drag and drop, rotational transformation (adavanced concepts in iOS development)
+Developing card view model to show users' images. 
+Refactoring codebase. 
