@@ -8,3 +8,8 @@ May 13 2020:
 Learning and applying MVVM model, drag and drop, rotational transformation (adavanced concepts in iOS development)
 Developing card view model to show users' images. 
 Refactoring codebase. 
+
+May 24 2020: 
+fixing bugs. 
+refactoring code to MVVM model to handle UI. 
+using Bindable and Reactice programming to control state. 
