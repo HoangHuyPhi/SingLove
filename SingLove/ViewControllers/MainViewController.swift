@@ -7,32 +7,59 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class MainViewController: UIViewController {
     
     let topStackView = TopNavigationStackView()
     let bottomStackView = MainBottomControlsStackView()
     let cardsView = UIView()
-    
-    let cardViewModels : [CardViewModel] = {
-        let producer = [
-              User(name: "Kelly", age: 23, profession: "Music DJ", imageNames: ["kelly1", "kelly2", "kelly3"]),
-            Advertiser(title: "Slide out Menu", brandName: "Let's build that app", poster: "slide_out_menu_poster"),
-              User(name: "Jane", age: 18, profession: "Teacher", imageNames: ["jane1", "jane2", "jane3"])
-        ] as [ProducesCardViewModel]
-        
-        let viewModels = producer.map { (card) -> CardViewModel in
-            return card.toCardViewModel()
-        }
-        return viewModels
-    }()
+    var cardViewsModel = [CardViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         topStackView.settingButton.addTarget(self, action: #selector(handleSetting), for: .touchUpInside)
+        bottomStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setUpLayout()
-        setUpDummyCards()
+        fetchUsersFromFirestore()
+    }
+    
+    @objc private func handleRefresh() {
+        fetchUsersFromFirestore()
+    }
+    
+    
+    private var lastFetchedUser: User?
+    
+    
+    private func fetchUsersFromFirestore() {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Finding Matches"
+        hud.show(in: view)
+        let query = Firestore.firestore().collection("user").order(by: "uuid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
+        query.getDocuments { (snapshot, error) in
+            hud.dismiss()
+            if let err = error {
+                print("Failed to fetch users: ", err)
+                return
+            }
+            snapshot?.documents.forEach({ (docsSnapshot) in
+                let userDict = docsSnapshot.data()
+                let user = User(dictionary: userDict)
+                self.cardViewsModel.append(user.toCardViewModel())
+                self.lastFetchedUser = user
+                self.setUpViewCardsFromUsers(user)
+            })
+        }
+    }
+    
+    private func setUpViewCardsFromUsers(_ user: User) {
+            let cardView = CardView(frame: .zero)
+            cardView.cardViewModel = user.toCardViewModel()
+            cardsView.addSubview(cardView)
+            cardView.fillSuperview()
     }
     
     @objc private func handleSetting() {
@@ -41,11 +68,12 @@ class MainViewController: UIViewController {
         present(loginVC, animated: true)
     }
     
-    private func setUpDummyCards() {
-        cardViewModels.forEach { (card) in
+    private func setUpViewCards() {
+        cardViewsModel.forEach { (card) in
             let cardView = CardView(frame: .zero)
             cardView.cardViewModel = card
             cardsView.addSubview(cardView)
+            cardsView.sendSubviewToBack(cardView)
             cardView.fillSuperview()
         }
     }

@@ -23,8 +23,9 @@
 		3AEF0472246BF60000A070B5 /* UIView-Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0471246BF60000A070B5 /* UIView-Layout.swift */; };
 		3AEF0474246BF81D00A070B5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0473246BF81D00A070B5 /* CardView.swift */; };
 		3AEF0477246C098300A070B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0476246C098300A070B5 /* User.swift */; };
-		3AEF047A246C137B00A070B5 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0479246C137B00A070B5 /* ViewModel.swift */; };
+		3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0479246C137B00A070B5 /* CardViewModel.swift */; };
 		3AEF047C246C1A3000A070B5 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF047B246C1A3000A070B5 /* Advertiser.swift */; };
+		3AFE1A5A247B9FE900B72DDF /* UserInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */; };
 		6EE0525C1BFB81401939917F /* Pods_SingLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4172E45A94341E83789C71 /* Pods_SingLove.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +50,9 @@
 		3AEF0471246BF60000A070B5 /* UIView-Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Layout.swift"; sourceTree = "<group>"; };
 		3AEF0473246BF81D00A070B5 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3AEF0476246C098300A070B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3AEF0479246C137B00A070B5 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		3AEF0479246C137B00A070B5 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		3AEF047B246C1A3000A070B5 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfomationViewController.swift; sourceTree = "<group>"; };
 		6CAB990534523B77D21A15E8 /* Pods-SingLove.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SingLove.release.xcconfig"; path = "Target Support Files/Pods-SingLove/Pods-SingLove.release.xcconfig"; sourceTree = "<group>"; };
 		6D4172E45A94341E83789C71 /* Pods_SingLove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SingLove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 		3A44F3EC246BF05A008A4155 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3A54F023247A65D4006504B7 /* Bindable.swift */,
 				3A8A32BB2450620B003DAA2E /* CustomTextField.swift */,
 				3AEF0471246BF60000A070B5 /* UIView-Layout.swift */,
 			);
@@ -137,7 +140,7 @@
 			children = (
 				3A8A32A9245053A1003DAA2E /* RegisterViewController.swift */,
 				3A79F33B2453BF4700EA1860 /* MainViewController.swift */,
-				3A54F023247A65D4006504B7 /* Bindable.swift */,
+				3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -154,7 +157,7 @@
 		3AEF0478246C136E00A070B5 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				3AEF0479246C137B00A070B5 /* ViewModel.swift */,
+				3AEF0479246C137B00A070B5 /* CardViewModel.swift */,
 				3A54F01F247A503F006504B7 /* RegistrationViewModel.swift */,
 			);
 			path = "View Model";
@@ -288,9 +291,10 @@
 				3A8A32AA245053A1003DAA2E /* RegisterViewController.swift in Sources */,
 				3AEF0474246BF81D00A070B5 /* CardView.swift in Sources */,
 				3A79F33F2453C7E500EA1860 /* MainBottomControlsStackView.swift in Sources */,
-				3AEF047A246C137B00A070B5 /* ViewModel.swift in Sources */,
+				3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */,
 				3AEF0472246BF60000A070B5 /* UIView-Layout.swift in Sources */,
 				3A8A32A6245053A1003DAA2E /* AppDelegate.swift in Sources */,
+				3AFE1A5A247B9FE900B72DDF /* UserInfomationViewController.swift in Sources */,
 				3A79F3412453CEFB00EA1860 /* TopNavigationStackView.swift in Sources */,
 				3A79F33C2453BF4700EA1860 /* MainViewController.swift in Sources */,
 				3A54F024247A65D4006504B7 /* Bindable.swift in Sources */,

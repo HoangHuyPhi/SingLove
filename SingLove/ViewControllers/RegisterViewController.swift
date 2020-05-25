@@ -10,20 +10,6 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-extension RegisterViewController:  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.originalImage] as? UIImage
-        registrationViewModel.bindableImage.value = image
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
-    }
-    
-}
-
 class RegisterViewController: UIViewController {
     
     let brandName: UILabel = {
@@ -78,7 +64,7 @@ class RegisterViewController: UIViewController {
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign up", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.black, for: .disabled)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         button.layer.cornerRadius = 16
         button.backgroundColor = .lightGray
@@ -88,38 +74,12 @@ class RegisterViewController: UIViewController {
         return button
     }()
     
-    @objc private func handleRegister() {
-        self.handleTapDismiss()
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-                return
-        }
-        Auth.auth().createUser(withEmail: email, password: password) { (data, error) in
-            if let err = error {
-                print(err)
-                self.showHudWithError(err)
-                return
-            }
-            print("Successfully registered user: ", data?.user.uid ?? "")
-        }
-    }
-    
-    private func showHudWithError(_ error: Error) {
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Failed registration"
-        hud.detailTextLabel.text = error.localizedDescription
-        hud.show(in: self.view)
-        hud.dismiss(afterDelay: 4)
-    }
-    
-    
     let toLoginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Have an account? Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
         return button
     }()
-    
-    let registrationViewModel = RegistrationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,19 +90,29 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
     }
     
+// MARK: -- HANDLE TEXT FIELDS
+    
+    let registrationViewModel = RegistrationViewModel()
+    
     private func setUpViewModelRegistration() {
-        registrationViewModel.formValidObserver = { [weak self] (isFormValid) in
-            self?.signUpButton.isEnabled = isFormValid
-            if isFormValid {
-                self?.signUpButton.backgroundColor = .systemBlue
-                self?.signUpButton.setTitleColor(.white, for: .normal)
-            } else {
-                self?.signUpButton.backgroundColor = .lightGray
-                self?.signUpButton.setTitleColor(.black, for: .normal)
+        registrationViewModel.bindableIsFormValid.bind { [weak self] (isFormValid) in
+            guard let isFormValid = isFormValid else {
+                return
             }
+            self?.signUpButton.backgroundColor = isFormValid ? .systemBlue : .lightGray
+            self?.signUpButton.setTitleColor(isFormValid ? .white : .black, for: isFormValid ? .normal : .disabled)
+            self?.signUpButton.isEnabled = isFormValid
         }
         registrationViewModel.bindableImage.bind { [weak self] (img) in
-        self?.selectPhotoButton.setImage(img, for: .normal)
+            self?.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        registrationViewModel.bindableIsRegistering.bind { [weak self] (isRegistering) in
+            if isRegistering == true {
+                self?.registeringHUD.textLabel.text = "Register"
+                self?.registeringHUD.show(in: self?.view ?? UIView())
+            } else {
+                self?.registeringHUD.dismiss()
+            }
         }
     }
     
@@ -159,6 +129,30 @@ class RegisterViewController: UIViewController {
     @objc private func handleTapDismiss() {
         self.view.endEditing(true)
     }
+    
+    let registeringHUD = JGProgressHUD(style: .dark)
+    
+    @objc private func handleRegister() {
+        self.handleTapDismiss()
+        registrationViewModel.performRegistration {[weak self] (err) in
+            if let err = err {
+                self?.showHudWithError(err)
+                return
+            }
+            print("finished registering our user")
+        }
+    }
+    
+    private func showHudWithError(_ error: Error) {
+        registeringHUD.dismiss()
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Failed registration"
+        hud.detailTextLabel.text = error.localizedDescription
+        hud.show(in: self.view)
+        hud.dismiss(afterDelay: 4)
+    }
+
+// MARK: -- SETUP USER INTERFACE
     
     private func setUpUserInformation() {
         setUpStackViewInfo()
@@ -196,6 +190,20 @@ class RegisterViewController: UIViewController {
         gradientLayer.locations = [0.5 , 1]
         view.layer.addSublayer(gradientLayer)
         gradientLayer.frame = view.bounds
+    }
+    
+}
+
+extension RegisterViewController:  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        registrationViewModel.bindableImage.value = image
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
     }
     
 }

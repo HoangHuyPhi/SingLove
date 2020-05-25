@@ -13,3 +13,7 @@ May 24 2020:
 fixing bugs. 
 refactoring code to MVVM model to handle UI. 
 using Bindable and Reactice programming to control state. 
+
+May 25 2020: 
+fixing bugs, refactoring code to improve the efficiency. 
+adding Firebase (authentication, data storage, database), data pagination. 

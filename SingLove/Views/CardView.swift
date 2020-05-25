@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardView: UIView {
     
     var cardViewModel: CardViewModel! {
         didSet {
             let imageName = cardViewModel.imageNames.first ?? ""
-            imageView.image = UIImage(named: imageName)
+            if let url = URL(string: imageName) {
+                imageView.sd_setImage(with: url)
+            }
             infoLabel.attributedText = cardViewModel.attributedString
             infoLabel.textAlignment = cardViewModel.textAlignment
             (0..<cardViewModel.imageNames.count).forEach { (_) in
@@ -27,13 +30,14 @@ class CardView: UIView {
     }
     
     private func setUpImageIndexObserver() {
-        cardViewModel.imageIndexObserver = {[weak self] (index, image) in
-            self?.imageView.image = image
+        cardViewModel.imageIndexObserver = {[weak self] (index, imageUrl) in
+            if let url = URL(string: imageUrl ?? "") {
+                self?.imageView.sd_setImage(with: url)
+            }
             self?.progressStackView.arrangedSubviews.forEach { (view) in
                 view.backgroundColor = self?.barDeselectedColor
             }
             self?.progressStackView.arrangedSubviews[index].backgroundColor = .white
-            
         }
     }
     

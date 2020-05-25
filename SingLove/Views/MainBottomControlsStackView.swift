@@ -10,30 +10,32 @@ import UIKit
 
 class MainBottomControlsStackView: UIStackView {
     
+    static func createButton(image: UIImage) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageView?.contentMode = .scaleToFill
+        return button
+    }
+    
+    let refreshButton = createButton(image: #imageLiteral(resourceName: "refresh_circle"))
+    let dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"))
+    let superLikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"))
+    let likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"))
+    let specialButton = createButton(image: #imageLiteral(resourceName: "boost_circle"))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureBottomStackView()
-        addButtons()
     }
     
     private func configureBottomStackView() {
         distribution = .fillEqually
         axis = .horizontal
         heightAnchor.constraint(equalToConstant: 100).isActive = true
-    }
-    
-    private func addButtons() {
-        let buttons = [#imageLiteral(resourceName: "refresh_circle"), #imageLiteral(resourceName: "dismiss_circle"), #imageLiteral(resourceName: "super_like_circle"), #imageLiteral(resourceName: "like_circle"), #imageLiteral(resourceName: "boost_circle")].map { (image) -> UIButton in
-            let bt = UIButton(type: .system)
-            bt.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
-            return bt
-        }
-        
-        buttons.forEach { (v) in
-            addArrangedSubview(v)
+        [refreshButton, dislikeButton, superLikeButton, likeButton, specialButton].forEach { (bt) in
+            self.addArrangedSubview(bt)
         }
     }
-    
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
