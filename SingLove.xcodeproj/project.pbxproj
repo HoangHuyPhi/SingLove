@@ -20,6 +20,8 @@
 		3A8A32AF245053A3003DAA2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A8A32AE245053A3003DAA2E /* Assets.xcassets */; };
 		3A8A32B2245053A3003DAA2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A8A32B0245053A3003DAA2E /* LaunchScreen.storyboard */; };
 		3A8A32BC2450620B003DAA2E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A32BB2450620B003DAA2E /* CustomTextField.swift */; };
+		3AB71FFB247E5B4B00FBC4D4 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB71FFA247E5B4B00FBC4D4 /* AgeRangeCell.swift */; };
+		3AE0CA97247E3AE800B1AFDE /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0CA96247E3AE800B1AFDE /* InfoCell.swift */; };
 		3AEF0472246BF60000A070B5 /* UIView-Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0471246BF60000A070B5 /* UIView-Layout.swift */; };
 		3AEF0474246BF81D00A070B5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0473246BF81D00A070B5 /* CardView.swift */; };
 		3AEF0477246C098300A070B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0476246C098300A070B5 /* User.swift */; };
@@ -47,6 +49,8 @@
 		3A8A32B1245053A3003DAA2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A8A32B3245053A3003DAA2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A8A32BB2450620B003DAA2E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3AB71FFA247E5B4B00FBC4D4 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
+		3AE0CA96247E3AE800B1AFDE /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		3AEF0471246BF60000A070B5 /* UIView-Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Layout.swift"; sourceTree = "<group>"; };
 		3AEF0473246BF81D00A070B5 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3AEF0476246C098300A070B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				3AEF0473246BF81D00A070B5 /* CardView.swift */,
 				3A79F33E2453C7E500EA1860 /* MainBottomControlsStackView.swift */,
 				3A79F3402453CEFB00EA1860 /* TopNavigationStackView.swift */,
+				3AE0CA96247E3AE800B1AFDE /* InfoCell.swift */,
+				3AB71FFA247E5B4B00FBC4D4 /* AgeRangeCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +299,8 @@
 				3A79F33F2453C7E500EA1860 /* MainBottomControlsStackView.swift in Sources */,
 				3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */,
 				3AEF0472246BF60000A070B5 /* UIView-Layout.swift in Sources */,
+				3AB71FFB247E5B4B00FBC4D4 /* AgeRangeCell.swift in Sources */,
+				3AE0CA97247E3AE800B1AFDE /* InfoCell.swift in Sources */,
 				3A8A32A6245053A1003DAA2E /* AppDelegate.swift in Sources */,
 				3AFE1A5A247B9FE900B72DDF /* UserInfomationViewController.swift in Sources */,
 				3A79F3412453CEFB00EA1860 /* TopNavigationStackView.swift in Sources */,

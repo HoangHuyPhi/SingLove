@@ -17,3 +17,7 @@ using Bindable and Reactice programming to control state.
 May 25 2020: 
 fixing bugs, refactoring code to improve the efficiency. 
 adding Firebase (authentication, data storage, database), data pagination. 
+
+May 27 2020: 
+Creating UserInfomation controller (name, photos, images, age range), and persisting data with Firestore
+Fixing bugs. 
