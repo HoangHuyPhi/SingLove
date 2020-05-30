@@ -9,17 +9,25 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    
+    func didTapMoreInfo(cardViewModel: CardViewModel!)
+    
+}
+
 class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageNames.first ?? ""
+            let imageName = cardViewModel.imageUrls.first ?? ""
             if let url = URL(string: imageName) {
                 imageView.sd_setImage(with: url)
             }
             infoLabel.attributedText = cardViewModel.attributedString
             infoLabel.textAlignment = cardViewModel.textAlignment
-            (0..<cardViewModel.imageNames.count).forEach { (_) in
+            (0..<cardViewModel.imageUrls.count).forEach { (_) in
                 let barView = UIView()
                 barView.backgroundColor = barDeselectedColor
                 progressStackView.addArrangedSubview(barView)
@@ -27,6 +35,31 @@ class CardView: UIView {
             progressStackView.arrangedSubviews.first?.backgroundColor = .white
             setUpImageIndexObserver()
         }
+    }
+    
+    private let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    private let imageView = UIImageView()
+    private let infoLabel = UILabel()
+    private let gradientLayer = CAGradientLayer()
+    private let threshold: CGFloat = 80
+    private let progressStackView = UIStackView()
+    private var imageIndex = 0
+    private let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpLayoutForView()
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        addGestureRecognizer(panGesture)
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 44, height: 44))
     }
     
     private func setUpImageIndexObserver() {
@@ -41,23 +74,9 @@ class CardView: UIView {
         }
     }
     
-    private let imageView = UIImageView()
-    private let infoLabel = UILabel()
-    private let gradientLayer = CAGradientLayer()
-    private let threshold: CGFloat = 80
-    private let progressStackView = UIStackView()
-    private var imageIndex = 0
-    private let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUpLayoutForView()
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    @objc private func handleMoreInfo() {
+        delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
     }
-    
     
     @objc private func handleTap(gesture: UITapGestureRecognizer) {
         let tapLocation = gesture.location(in: nil)
@@ -68,6 +87,7 @@ class CardView: UIView {
             cardViewModel.goToPreviousPhoto()
         }
     }
+    
     
     private func setUpLayoutForView() {
         layer.cornerRadius = 10

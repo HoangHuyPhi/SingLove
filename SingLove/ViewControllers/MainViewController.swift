@@ -10,7 +10,17 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, CardViewDelegate {
+    
+    
+    func didTapMoreInfo(cardViewModel: CardViewModel!) {
+        print("Home Controller: ", cardViewModel.attributedString)
+        let userDetailsController = UserDetailViewController()
+        userDetailsController.cardViewModel = cardViewModel
+        userDetailsController.modalPresentationStyle = .fullScreen
+        present(userDetailsController, animated: true)
+    }
+    
     
     let topStackView = TopNavigationStackView()
     let bottomStackView = MainBottomControlsStackView()
@@ -24,6 +34,7 @@ class MainViewController: UIViewController {
         bottomStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setUpLayout()
         fetchUsersFromFirestore()
+        
     }
     
     @objc private func handleRefresh() {
@@ -48,15 +59,16 @@ class MainViewController: UIViewController {
             snapshot?.documents.forEach({ (docsSnapshot) in
                 let userDict = docsSnapshot.data()
                 let user = User(dictionary: userDict)
+                       self.setUpViewCardsFromUsers(user)
                 self.cardViewsModel.append(user.toCardViewModel())
                 self.lastFetchedUser = user
-                self.setUpViewCardsFromUsers(user)
             })
         }
     }
     
     private func setUpViewCardsFromUsers(_ user: User) {
             let cardView = CardView(frame: .zero)
+            cardView.delegate = self
             cardView.cardViewModel = user.toCardViewModel()
             cardsView.addSubview(cardView)
             cardView.fillSuperview()
@@ -66,16 +78,6 @@ class MainViewController: UIViewController {
         let loginVC = RegisterViewController()
         loginVC.modalPresentationStyle = .fullScreen
         present(loginVC, animated: true)
-    }
-    
-    private func setUpViewCards() {
-        cardViewsModel.forEach { (card) in
-            let cardView = CardView(frame: .zero)
-            cardView.cardViewModel = card
-            cardsView.addSubview(cardView)
-            cardsView.sendSubviewToBack(cardView)
-            cardView.fillSuperview()
-        }
     }
     
     private func setUpLayout() {
