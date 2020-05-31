@@ -30,8 +30,7 @@ class CardViewModel {
             imageIndexObserver?(imageIndex, imageUrl)
         }
     }
-    
-    
+
     var imageIndexObserver: ((Int, String?) -> ())?
     
     func goToNextPhoto() {

@@ -14,8 +14,8 @@
             filePath = "SingLove/ViewControllers/RegisterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "handleRegister()"
             landmarkType = "7">
          </BreakpointContent>
@@ -82,6 +82,86 @@
             endingLineNumber = "24"
             landmarkName = "cardViewModel"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F9226BE-1907-42C8-87BA-E287622AFE2C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SingLove/ViewControllers/UserInfomationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "handleNameChange(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2DA482E4-85B8-42BA-969B-ECD226A2BECC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SingLove/ViewControllers/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "fetchUsersFromFirestore()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2DA482E4-85B8-42BA-969B-ECD226A2BECC - d6f7abbb1410b1c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SingLove.MainViewController.(fetchUsersFromFirestore in _0609B894488DE7911B2AD5EDDD7B7265)() -&gt; ()"
+                  moduleName = "SingLove"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phihoanghuy/Downloads/SingLove/SingLove/ViewControllers/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "199">
+               </Location>
+               <Location
+                  uuid = "2DA482E4-85B8-42BA-969B-ECD226A2BECC - f3099b065f86c4b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SingLove.MainViewController.(fetchUsersFromFirestore in _0609B894488DE7911B2AD5EDDD7B7265)() -&gt; ()"
+                  moduleName = "SingLove"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phihoanghuy/Downloads/SingLove/SingLove/ViewControllers/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "133">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F718BE6-E173-4940-9BF9-026F7D916DC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SingLove/ViewControllers/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "fetchUsersFromFirestore()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

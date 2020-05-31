@@ -78,6 +78,7 @@ class RegisterViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Have an account? Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(handleToLogin), for: .touchUpInside)
         return button
     }()
     
@@ -87,7 +88,14 @@ class RegisterViewController: UIViewController {
         setUpUserInformation()
         setUpToLoginButton()
         setUpViewModelRegistration()
+        navigationController?.isNavigationBarHidden = true 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+    }
+    
+    @objc private func handleToLogin() {
+        let loginController = UIViewController()
+        loginController.view.backgroundColor = .yellow
+        navigationController?.pushViewController(loginController, animated: true)
     }
     
 // MARK: -- HANDLE TEXT FIELDS

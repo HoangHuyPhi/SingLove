@@ -10,31 +10,48 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class MainViewController: UIViewController, CardViewDelegate {
-    
-    
-    func didTapMoreInfo(cardViewModel: CardViewModel!) {
-        print("Home Controller: ", cardViewModel.attributedString)
-        let userDetailsController = UserDetailViewController()
-        userDetailsController.cardViewModel = cardViewModel
-        userDetailsController.modalPresentationStyle = .fullScreen
-        present(userDetailsController, animated: true)
-    }
-    
+class MainViewController: UIViewController, CardViewDelegate , UserInfomationDelegate{
     
     let topStackView = TopNavigationStackView()
     let bottomStackView = MainBottomControlsStackView()
     let cardsView = UIView()
-    var cardViewsModel = [CardViewModel]()
+    var cardViewModels = [CardViewModel]()
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        topStackView.settingButton.addTarget(self, action: #selector(handleSetting), for: .touchUpInside)
+        topStackView.settingButton.addTarget(self, action: #selector(presentInfoViewController), for: .touchUpInside)
         bottomStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setUpLayout()
-        fetchUsersFromFirestore()
         
+        fetchCurrentUser()
+        print("lol")
+        //fetchUsersFromFirestore()
+        //setupFirestoreUserCards()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if Auth.auth().currentUser == nil {
+            let registrationController = RegisterViewController()
+            let navController = UINavigationController(rootViewController: registrationController)
+            present(navController, animated: true)
+        }
+    }
+    
+    private func fetchCurrentUser() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, error) in
+            if let err = error {
+                print(err)
+                return
+            }
+            guard let dictionary = snapshot?.data() else {
+                return
+            }
+            self.user = User(dictionary: dictionary)
+            self.fetchUsersFromFirestore()
+        }
     }
     
     @objc private func handleRefresh() {
@@ -46,10 +63,13 @@ class MainViewController: UIViewController, CardViewDelegate {
     
     
     private func fetchUsersFromFirestore() {
+        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else {
+            return
+        }
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Finding Matches"
         hud.show(in: view)
-        let query = Firestore.firestore().collection("user").order(by: "uuid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, error) in
             hud.dismiss()
             if let err = error {
@@ -59,25 +79,36 @@ class MainViewController: UIViewController, CardViewDelegate {
             snapshot?.documents.forEach({ (docsSnapshot) in
                 let userDict = docsSnapshot.data()
                 let user = User(dictionary: userDict)
-                       self.setUpViewCardsFromUsers(user)
-                self.cardViewsModel.append(user.toCardViewModel())
+                self.cardViewModels.append(user.toCardViewModel())
                 self.lastFetchedUser = user
+                self.setUpViewCardsFromUsers(user)
             })
         }
     }
     
     private func setUpViewCardsFromUsers(_ user: User) {
-            let cardView = CardView(frame: .zero)
-            cardView.delegate = self
-            cardView.cardViewModel = user.toCardViewModel()
-            cardsView.addSubview(cardView)
-            cardView.fillSuperview()
+        let cardView = CardView(frame: .zero)
+        cardView.delegate = self
+        cardView.cardViewModel = user.toCardViewModel()
+        cardsView.addSubview(cardView)
+        cardView.fillSuperview()
     }
     
-    @objc private func handleSetting() {
-        let loginVC = RegisterViewController()
-        loginVC.modalPresentationStyle = .fullScreen
-        present(loginVC, animated: true)
+    fileprivate func setupFirestoreUserCards() {
+        cardViewModels.forEach { (cardVM) in
+            let cardView = CardView(frame: .zero)
+            cardView.cardViewModel = cardVM
+            cardsView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
+    }
+    
+    @objc private func presentInfoViewController() {
+        let userInfo = UserInfomationViewController()
+        userInfo.delegate = self
+        let navigationUserInfo = UINavigationController(rootViewController: userInfo)
+        navigationUserInfo.modalPresentationStyle = .fullScreen
+        present(navigationUserInfo, animated: true)
     }
     
     private func setUpLayout() {
@@ -88,6 +119,19 @@ class MainViewController: UIViewController, CardViewDelegate {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         stackView.bringSubviewToFront(cardsView)
+        view.backgroundColor = .white
+    }
+    
+    func didSaveInfo() {
+        fetchCurrentUser()
+    }
+    
+    func didTapMoreInfo(cardViewModel: CardViewModel!) {
+        print("Home Controller: ", cardViewModel.attributedString)
+        let userDetailsController = UserDetailViewController()
+        userDetailsController.cardViewModel = cardViewModel
+        userDetailsController.modalPresentationStyle = .fullScreen
+        present(userDetailsController, animated: true)
     }
     
 }
