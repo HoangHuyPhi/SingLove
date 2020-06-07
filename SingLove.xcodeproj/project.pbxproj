@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A54F020247A503F006504B7 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54F01F247A503F006504B7 /* RegistrationViewModel.swift */; };
-		3A54F022247A5BE3006504B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A54F021247A5BE3006504B7 /* GoogleService-Info.plist */; };
 		3A54F024247A65D4006504B7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54F023247A65D4006504B7 /* Bindable.swift */; };
 		3A79F33C2453BF4700EA1860 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79F33B2453BF4700EA1860 /* MainViewController.swift */; };
 		3A79F33F2453C7E500EA1860 /* MainBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79F33E2453C7E500EA1860 /* MainBottomControlsStackView.swift */; };
@@ -27,6 +26,8 @@
 		3AEF0477246C098300A070B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0476246C098300A070B5 /* User.swift */; };
 		3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0479246C137B00A070B5 /* CardViewModel.swift */; };
 		3AEF047C246C1A3000A070B5 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF047B246C1A3000A070B5 /* Advertiser.swift */; };
+		3AEF3287248D0F3400718A20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AEF3286248D0F3400718A20 /* GoogleService-Info.plist */; };
+		3AEF3289248D111400718A20 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF3288248D111400718A20 /* SwipingPhotosController.swift */; };
 		3AF21115248215AD00AB275F /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF21114248215AD00AB275F /* UserDetailViewController.swift */; };
 		3AFE1A5A247B9FE900B72DDF /* UserInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */; };
 		6EE0525C1BFB81401939917F /* Pods_SingLove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4172E45A94341E83789C71 /* Pods_SingLove.framework */; };
@@ -36,7 +37,6 @@
 		2509C229D80218EAA5E4AEDF /* Pods-SingLove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SingLove.debug.xcconfig"; path = "Target Support Files/Pods-SingLove/Pods-SingLove.debug.xcconfig"; sourceTree = "<group>"; };
 		3A54F01E247A4D3E006504B7 /* SingLove.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SingLove.entitlements; path = ../../../.Trash/SingLove.entitlements; sourceTree = "<group>"; };
 		3A54F01F247A503F006504B7 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		3A54F021247A5BE3006504B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A54F023247A65D4006504B7 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		3A79F33B2453BF4700EA1860 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3A79F33E2453C7E500EA1860 /* MainBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomControlsStackView.swift; sourceTree = "<group>"; };
@@ -57,6 +57,8 @@
 		3AEF0476246C098300A070B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AEF0479246C137B00A070B5 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		3AEF047B246C1A3000A070B5 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		3AEF3286248D0F3400718A20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3AEF3288248D111400718A20 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		3AF21114248215AD00AB275F /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfomationViewController.swift; sourceTree = "<group>"; };
 		6CAB990534523B77D21A15E8 /* Pods-SingLove.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SingLove.release.xcconfig"; path = "Target Support Files/Pods-SingLove/Pods-SingLove.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		3A2612D12483E1230080A4CD /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3AEF3288248D111400718A20 /* SwipingPhotosController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -140,8 +143,8 @@
 				3AEF0470246BF5C800A070B5 /* ViewControllers */,
 				3A44F3EC246BF05A008A4155 /* Utilities */,
 				3A8A32A5245053A1003DAA2E /* AppDelegate.swift */,
-				3A54F021247A5BE3006504B7 /* GoogleService-Info.plist */,
 				3A8A32A7245053A1003DAA2E /* SceneDelegate.swift */,
+				3AEF3286248D0F3400718A20 /* GoogleService-Info.plist */,
 				3A8A32AB245053A1003DAA2E /* Main.storyboard */,
 				3A8A32AE245053A3003DAA2E /* Assets.xcassets */,
 				3A8A32B0245053A3003DAA2E /* LaunchScreen.storyboard */,
@@ -250,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8A32B2245053A3003DAA2E /* LaunchScreen.storyboard in Resources */,
-				3A54F022247A5BE3006504B7 /* GoogleService-Info.plist in Resources */,
+				3AEF3287248D0F3400718A20 /* GoogleService-Info.plist in Resources */,
 				3A8A32AF245053A3003DAA2E /* Assets.xcassets in Resources */,
 				3A8A32AD245053A1003DAA2E /* Main.storyboard in Resources */,
 			);
@@ -322,6 +325,7 @@
 				3A54F020247A503F006504B7 /* RegistrationViewModel.swift in Sources */,
 				3A8A32A8245053A1003DAA2E /* SceneDelegate.swift in Sources */,
 				3AEF0477246C098300A070B5 /* User.swift in Sources */,
+				3AEF3289248D111400718A20 /* SwipingPhotosController.swift in Sources */,
 				3A8A32BC2450620B003DAA2E /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
