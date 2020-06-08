@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>978397903091-1l2v4bp3ienuupui5o7e4ai4jdctttt0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.978397903091-1l2v4bp3ienuupui5o7e4ai4jdctttt0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAS4vaNNLjn0ZtXHKBx8_q-TtJcKZQAj0Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>978397903091</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>HoangHuyPhi.SingLove</string>
+	<key>PROJECT_ID</key>
+	<string>lovefirestore-686fe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>lovefirestore-686fe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:978397903091:ios:797059f723aac8ffb8df86</string>
+	<key>DATABASE_URL</key>
+	<string>https://lovefirestore-686fe.firebaseio.com</string>
+</dict>
+</plist>

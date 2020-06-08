@@ -41,10 +41,11 @@ struct User: ProducesCardViewModel {
         attributedText.append(NSAttributedString(string: "\n\(professionString)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
         
         var imageUrls = [String]()
-        if let url = imageUrl1 { imageUrls.append(url) }
-        if let url = imageUrl2 { imageUrls.append(url) }
-        if let url = imageUrl3 { imageUrls.append(url) }
-        
+        [imageUrl1, imageUrl2, imageUrl3].forEach { (url) in
+            if url != "" && url != nil {
+                imageUrls.append(url!)
+            }
+        }
         return CardViewModel(imageNames: imageUrls, attributedString: attributedText, textAlignment: .left)
     }
 }

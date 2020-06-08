@@ -19,21 +19,24 @@ class CardView: UIView {
     
     var delegate: CardViewDelegate?
     
+    private let swipingPhotosController = SwipingPhotosController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    private var imageView: UIView! {
+        return swipingPhotosController.view
+    }
+    
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageUrls.first ?? ""
-            if let url = URL(string: imageName) {
-                imageView.sd_setImage(with: url)
-            }
+            swipingPhotosController.cardViewModel = self.cardViewModel
+            
             infoLabel.attributedText = cardViewModel.attributedString
             infoLabel.textAlignment = cardViewModel.textAlignment
-            (0..<cardViewModel.imageUrls.count).forEach { (_) in
-                let barView = UIView()
-                barView.backgroundColor = barDeselectedColor
-                progressStackView.addArrangedSubview(barView)
-            }
-            progressStackView.arrangedSubviews.first?.backgroundColor = .white
-            setUpImageIndexObserver()
+//            (0..<cardViewModel.imageUrls.count).forEach { (_) in
+//                let barView = UIView()
+//                barView.backgroundColor = barDeselectedColor
+//                progressStackView.addArrangedSubview(barView)
+//            }
+//            progressStackView.arrangedSubviews.first?.backgroundColor = .white
+//            setUpImageIndexObserver()
         }
     }
     
@@ -44,7 +47,9 @@ class CardView: UIView {
         return button
     }()
     
-    private let imageView = UIImageView()
+//    private let imageView = UIImageView()
+    
+    
     private let infoLabel = UILabel()
     private let gradientLayer = CAGradientLayer()
     private let threshold: CGFloat = 80
@@ -55,24 +60,24 @@ class CardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpLayoutForView()
+        disableScrollingForImageView()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         addSubview(moreInfoButton)
         moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 44, height: 44))
     }
     
-    private func setUpImageIndexObserver() {
-        cardViewModel.imageIndexObserver = {[weak self] (index, imageUrl) in
-            if let url = URL(string: imageUrl ?? "") {
-                self?.imageView.sd_setImage(with: url)
-            }
-            self?.progressStackView.arrangedSubviews.forEach { (view) in
-                view.backgroundColor = self?.barDeselectedColor
-            }
-            self?.progressStackView.arrangedSubviews[index].backgroundColor = .white
-        }
-    }
+//    private func setUpImageIndexObserver() {
+//        cardViewModel.imageIndexObserver = {[weak self] (index, imageUrl) in
+//            if let url = URL(string: imageUrl ?? "") {
+//                self?.imageView.sd_setImage(with: url)
+//            }
+//            self?.progressStackView.arrangedSubviews.forEach { (view) in
+//                view.backgroundColor = self?.barDeselectedColor
+//            }
+//            self?.progressStackView.arrangedSubviews[index].backgroundColor = .white
+//        }
+//    }
     
     @objc private func handleMoreInfo() {
         delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
@@ -88,14 +93,20 @@ class CardView: UIView {
         }
     }
     
-    
     private func setUpLayoutForView() {
         layer.cornerRadius = 10
         clipsToBounds = true
         setUpImageView()
         setUpGradientLayer()
         setUpInfoLabel()
-        setUpImagesCollection()
+    }
+    
+    private func disableScrollingForImageView() {
+        imageView.subviews.forEach { (v) in
+            if let v = v as? UIScrollView {
+                v.isScrollEnabled = false
+            }
+        }
     }
     
     private func setUpImageView() {
@@ -111,12 +122,12 @@ class CardView: UIView {
         infoLabel.numberOfLines = 0
     }
     
-    private func setUpImagesCollection() {
-        addSubview(progressStackView)
-        progressStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-        progressStackView.spacing = 4
-        progressStackView.distribution = .fillEqually
-    }
+//    private func setUpImagesCollection() {
+//        addSubview(progressStackView)
+//        progressStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
+//        progressStackView.spacing = 4
+//        progressStackView.distribution = .fillEqually
+//    }
     
     private func setUpGradientLayer() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]

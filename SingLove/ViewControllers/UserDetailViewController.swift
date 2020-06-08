@@ -17,7 +17,7 @@ class UserDetailViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
        let sv = UIScrollView()
         sv.alwaysBounceVertical = true
         sv.contentInsetAdjustmentBehavior = .never
@@ -25,11 +25,14 @@ class UserDetailViewController: UIViewController, UIScrollViewDelegate {
         return sv
     }()
     
-    let swipingPhotosController = SwipingPhotosController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    private let swipingPhotosController = SwipingPhotosController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    private var swipeView: UIView! {
+        return swipingPhotosController.view
+    }
+    private let SwipingHeight: CGFloat = 80
     
     let infoLabel: UILabel = {
        let label = UILabel()
-        label.text = "User name 30\nDoctor\nSome bio text down below"
         label.numberOfLines = 0
         return label
     }()
@@ -41,10 +44,10 @@ class UserDetailViewController: UIViewController, UIScrollViewDelegate {
         return bt
     }()
     
-    // 3 bottom control buttons
-    lazy var disLikeButton = self.createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDisLike))
-    lazy var superLikeButton = self.createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperLike))
-    lazy var likeButton = self.createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handleLike))
+    private lazy var disLikeButton = self.createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDisLike))
+    private lazy var superLikeButton = self.createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperLike))
+    private lazy var likeButton = self.createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handleLike))
+    
     
     fileprivate func createButton(image: UIImage, selector: Selector) -> UIButton {
         let button = UIButton(type: .system)
@@ -91,21 +94,17 @@ class UserDetailViewController: UIViewController, UIScrollViewDelegate {
     fileprivate func setUpLayout() {
         view.addSubview(scrollView)
         view.backgroundColor = .white
-        let swipingView = swipingPhotosController.view!
         scrollView.fillSuperview()
-        scrollView.addSubview(swipingView)
+        scrollView.addSubview(swipeView)
         scrollView.addSubview(infoLabel)
-        infoLabel.anchor(top: swipingView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
+        infoLabel.anchor(top: swipeView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
         scrollView.addSubview(dismissButton)
-        dismissButton.anchor(top: swipingView.bottomAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: -25, left: 0, bottom: 0, right: 50), size: .init(width: 50, height: 50))
+        dismissButton.anchor(top: swipeView.bottomAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: -25, left: 0, bottom: 0, right: 50), size: .init(width: 50, height: 50))
     }
-    
-    private let SwipingHeight: CGFloat = 80
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-         let swipingView = swipingPhotosController.view!
-         swipingView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + SwipingHeight)
+         swipeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + SwipingHeight)
     }
     
     
@@ -113,8 +112,7 @@ class UserDetailViewController: UIViewController, UIScrollViewDelegate {
         let changeY = -scrollView.contentOffset.y
         var stretchyHeaderConstant = view.frame.width + changeY * 2
         stretchyHeaderConstant = max(view.frame.width, stretchyHeaderConstant)
-        let imageView = swipingPhotosController.view!
-        imageView.frame = CGRect(x: min(0, -changeY), y: min(0, -changeY), width: stretchyHeaderConstant, height: stretchyHeaderConstant)
+        swipeView.frame = CGRect(x: min(0, -changeY), y: min(0, -changeY), width: stretchyHeaderConstant, height: stretchyHeaderConstant)
     }
     
     @objc private func handleTapDismiss() {

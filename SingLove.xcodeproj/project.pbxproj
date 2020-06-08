@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1796C2248DDFEA00411E41 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1796C1248DDFEA00411E41 /* LoginController.swift */; };
+		3A1796C4248DE55D00411E41 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1796C3248DE55D00411E41 /* LoginViewModel.swift */; };
+		3A1796C6248DF1D800411E41 /* RegisteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1796C5248DF1D800411E41 /* RegisteringView.swift */; };
+		3A1796C8248E31EC00411E41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A1796C7248E31EC00411E41 /* GoogleService-Info.plist */; };
 		3A54F020247A503F006504B7 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54F01F247A503F006504B7 /* RegistrationViewModel.swift */; };
 		3A54F024247A65D4006504B7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54F023247A65D4006504B7 /* Bindable.swift */; };
 		3A79F33C2453BF4700EA1860 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79F33B2453BF4700EA1860 /* MainViewController.swift */; };
@@ -26,7 +30,6 @@
 		3AEF0477246C098300A070B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0476246C098300A070B5 /* User.swift */; };
 		3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF0479246C137B00A070B5 /* CardViewModel.swift */; };
 		3AEF047C246C1A3000A070B5 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF047B246C1A3000A070B5 /* Advertiser.swift */; };
-		3AEF3287248D0F3400718A20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AEF3286248D0F3400718A20 /* GoogleService-Info.plist */; };
 		3AEF3289248D111400718A20 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF3288248D111400718A20 /* SwipingPhotosController.swift */; };
 		3AF21115248215AD00AB275F /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF21114248215AD00AB275F /* UserDetailViewController.swift */; };
 		3AFE1A5A247B9FE900B72DDF /* UserInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */; };
@@ -35,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		2509C229D80218EAA5E4AEDF /* Pods-SingLove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SingLove.debug.xcconfig"; path = "Target Support Files/Pods-SingLove/Pods-SingLove.debug.xcconfig"; sourceTree = "<group>"; };
+		3A1796C1248DDFEA00411E41 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		3A1796C3248DE55D00411E41 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3A1796C5248DF1D800411E41 /* RegisteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteringView.swift; sourceTree = "<group>"; };
+		3A1796C7248E31EC00411E41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A54F01E247A4D3E006504B7 /* SingLove.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SingLove.entitlements; path = ../../../.Trash/SingLove.entitlements; sourceTree = "<group>"; };
 		3A54F01F247A503F006504B7 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		3A54F023247A65D4006504B7 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -57,7 +64,6 @@
 		3AEF0476246C098300A070B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AEF0479246C137B00A070B5 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		3AEF047B246C1A3000A070B5 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
-		3AEF3286248D0F3400718A20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3AEF3288248D111400718A20 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		3AF21114248215AD00AB275F /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfomationViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +94,8 @@
 		3A2612D12483E1230080A4CD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3AEF3288248D111400718A20 /* SwipingPhotosController.swift */,
+				3A1796C1248DDFEA00411E41 /* LoginController.swift */,
+				3A1796C3248DE55D00411E41 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -111,6 +118,7 @@
 				3A79F3402453CEFB00EA1860 /* TopNavigationStackView.swift */,
 				3AE0CA96247E3AE800B1AFDE /* InfoCell.swift */,
 				3AB71FFA247E5B4B00FBC4D4 /* AgeRangeCell.swift */,
+				3A1796C5248DF1D800411E41 /* RegisteringView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,7 +152,7 @@
 				3A44F3EC246BF05A008A4155 /* Utilities */,
 				3A8A32A5245053A1003DAA2E /* AppDelegate.swift */,
 				3A8A32A7245053A1003DAA2E /* SceneDelegate.swift */,
-				3AEF3286248D0F3400718A20 /* GoogleService-Info.plist */,
+				3A1796C7248E31EC00411E41 /* GoogleService-Info.plist */,
 				3A8A32AB245053A1003DAA2E /* Main.storyboard */,
 				3A8A32AE245053A3003DAA2E /* Assets.xcassets */,
 				3A8A32B0245053A3003DAA2E /* LaunchScreen.storyboard */,
@@ -156,6 +164,7 @@
 		3AEF0470246BF5C800A070B5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AEF3288248D111400718A20 /* SwipingPhotosController.swift */,
 				3A2612D12483E1230080A4CD /* Login */,
 				3A8A32A9245053A1003DAA2E /* RegisterViewController.swift */,
 				3A79F33B2453BF4700EA1860 /* MainViewController.swift */,
@@ -253,7 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A8A32B2245053A3003DAA2E /* LaunchScreen.storyboard in Resources */,
-				3AEF3287248D0F3400718A20 /* GoogleService-Info.plist in Resources */,
+				3A1796C8248E31EC00411E41 /* GoogleService-Info.plist in Resources */,
 				3A8A32AF245053A3003DAA2E /* Assets.xcassets in Resources */,
 				3A8A32AD245053A1003DAA2E /* Main.storyboard in Resources */,
 			);
@@ -310,6 +319,7 @@
 			files = (
 				3A8A32AA245053A1003DAA2E /* RegisterViewController.swift in Sources */,
 				3AEF0474246BF81D00A070B5 /* CardView.swift in Sources */,
+				3A1796C6248DF1D800411E41 /* RegisteringView.swift in Sources */,
 				3AF21115248215AD00AB275F /* UserDetailViewController.swift in Sources */,
 				3A79F33F2453C7E500EA1860 /* MainBottomControlsStackView.swift in Sources */,
 				3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */,
@@ -317,6 +327,7 @@
 				3AB71FFB247E5B4B00FBC4D4 /* AgeRangeCell.swift in Sources */,
 				3AE0CA97247E3AE800B1AFDE /* InfoCell.swift in Sources */,
 				3A8A32A6245053A1003DAA2E /* AppDelegate.swift in Sources */,
+				3A1796C2248DDFEA00411E41 /* LoginController.swift in Sources */,
 				3AFE1A5A247B9FE900B72DDF /* UserInfomationViewController.swift in Sources */,
 				3A79F3412453CEFB00EA1860 /* TopNavigationStackView.swift in Sources */,
 				3A79F33C2453BF4700EA1860 /* MainViewController.swift in Sources */,
@@ -327,6 +338,7 @@
 				3AEF0477246C098300A070B5 /* User.swift in Sources */,
 				3AEF3289248D111400718A20 /* SwipingPhotosController.swift in Sources */,
 				3A8A32BC2450620B003DAA2E /* CustomTextField.swift in Sources */,
+				3A1796C4248DE55D00411E41 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

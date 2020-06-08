@@ -10,30 +10,28 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class MainViewController: UIViewController, CardViewDelegate , UserInfomationDelegate{
+class MainViewController: UIViewController, CardViewDelegate , UserInfomationDelegate, LoginControllerDelegate {
     
     let topStackView = TopNavigationStackView()
     let bottomStackView = MainBottomControlsStackView()
     let cardsView = UIView()
     var cardViewModels = [CardViewModel]()
     var user: User?
+    private var lastFetchedUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         topStackView.settingButton.addTarget(self, action: #selector(presentInfoViewController), for: .touchUpInside)
         bottomStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setUpLayout()
-        
         fetchCurrentUser()
-        print("lol")
-        //fetchUsersFromFirestore()
-        //setupFirestoreUserCards()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if Auth.auth().currentUser == nil {
             let registrationController = RegisterViewController()
+            registrationController.delegate = self
             let navController = UINavigationController(rootViewController: registrationController)
             present(navController, animated: true)
         }
@@ -58,14 +56,10 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
         fetchUsersFromFirestore()
     }
     
-    
-    private var lastFetchedUser: User?
-    
-    
     private func fetchUsersFromFirestore() {
-        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else {
-            return
-        }
+        let minAge = user?.minSeekingAge ?? UserInfomationViewController.defaultMinSeekingAge
+        let maxAge = user?.maxSeekingAge ?? UserInfomationViewController.defaultMaxSeekingAge
+        
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Finding Matches"
         hud.show(in: view)
@@ -79,9 +73,11 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
             snapshot?.documents.forEach({ (docsSnapshot) in
                 let userDict = docsSnapshot.data()
                 let user = User(dictionary: userDict)
-                self.cardViewModels.append(user.toCardViewModel())
-                self.lastFetchedUser = user
-                self.setUpViewCardsFromUsers(user)
+                if user.uid != Auth.auth().currentUser?.uid {
+                    self.cardViewModels.append(user.toCardViewModel())
+                    self.lastFetchedUser = user
+                    self.setUpViewCardsFromUsers(user)
+                }
             })
         }
     }
@@ -127,11 +123,14 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
     }
     
     func didTapMoreInfo(cardViewModel: CardViewModel!) {
-        print("Home Controller: ", cardViewModel.attributedString)
         let userDetailsController = UserDetailViewController()
         userDetailsController.cardViewModel = cardViewModel
         userDetailsController.modalPresentationStyle = .fullScreen
         present(userDetailsController, animated: true)
+    }
+    
+    func didFinishLoggingIn() {
+        fetchCurrentUser()
     }
     
 }

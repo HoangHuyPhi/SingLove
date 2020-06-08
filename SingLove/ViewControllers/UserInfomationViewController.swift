@@ -27,6 +27,9 @@ class UserInfomationViewController: UITableViewController {
     
     var user: User?
     
+    static let defaultMinSeekingAge = 18
+    static let defaultMaxSeekingAge = 50
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationItems()
@@ -93,10 +96,14 @@ class UserInfomationViewController: UITableViewController {
             let ageRangeCell = AgeRangeCell(style: .default, reuseIdentifier: nil)
             ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinAgeChange), for: .valueChanged)
             ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxAgeChange), for: .valueChanged)
-            ageRangeCell.minLabel.text = "Min \(user?.minSeekingAge ?? 0)"
-            ageRangeCell.maxLabel.text = "Max \(user?.maxSeekingAge ?? 0)"
-            ageRangeCell.minSlider.value = Float(user?.minSeekingAge ?? 0)
-            ageRangeCell.maxSlider.value = Float(user?.maxSeekingAge ?? 0)
+            
+            let minAge = user?.minSeekingAge ?? UserInfomationViewController.defaultMinSeekingAge
+            let maxAge = user?.maxSeekingAge ?? UserInfomationViewController.defaultMaxSeekingAge
+            
+            ageRangeCell.minLabel.text = "Min \(user?.minSeekingAge ?? minAge)"
+            ageRangeCell.maxLabel.text = "Max \(user?.maxSeekingAge ?? maxAge)"
+            ageRangeCell.minSlider.value = Float(user?.minSeekingAge ?? minAge)
+            ageRangeCell.maxSlider.value = Float(user?.maxSeekingAge ?? maxAge)
             return ageRangeCell
         }
         
@@ -144,8 +151,8 @@ class UserInfomationViewController: UITableViewController {
             "imageUrl3": user?.imageUrl3 ?? "",
             "age": user?.age ?? 0,
             "profession": user?.profession ?? "",
-            "minSeekingAge": user?.minSeekingAge ?? 0,
-            "maxSeekingAge": user?.maxSeekingAge ?? 0
+            "minSeekingAge": user?.minSeekingAge ?? UserInfomationViewController.defaultMinSeekingAge,
+            "maxSeekingAge": user?.maxSeekingAge ?? UserInfomationViewController.defaultMaxSeekingAge
         ]
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Saving info"
@@ -192,7 +199,7 @@ extension UserInfomationViewController {
     }
     
     @objc private func handleMinAgeChange(slider: UISlider) {
-        //    evaluateMinMax()
+        evaluateMinMax()
     }
     
     @objc private func handleMaxAgeChange(slider: UISlider) {
