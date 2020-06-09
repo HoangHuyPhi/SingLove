@@ -97,15 +97,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3A2612D12483E1230080A4CD /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				3A1796C1248DDFEA00411E41 /* LoginController.swift */,
-				3A1796C3248DE55D00411E41 /* LoginViewModel.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		3A44F3EC246BF05A008A4155 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				3AEF3288248D111400718A20 /* SwipingPhotosController.swift */,
-				3A2612D12483E1230080A4CD /* Login */,
+				3A1796C1248DDFEA00411E41 /* LoginController.swift */,
 				3A8A32A9245053A1003DAA2E /* RegisterViewController.swift */,
 				3A79F33B2453BF4700EA1860 /* MainViewController.swift */,
 				3AFE1A59247B9FE900B72DDF /* UserInfomationViewController.swift */,
@@ -197,6 +188,7 @@
 			children = (
 				3AEF0479246C137B00A070B5 /* CardViewModel.swift */,
 				3A54F01F247A503F006504B7 /* RegistrationViewModel.swift */,
+				3A1796C3248DE55D00411E41 /* LoginViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
