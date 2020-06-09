@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1299BC248F5CDD003D716D /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1299BB248F5CDD003D716D /* MatchView.swift */; };
+		3A1299BE248F8CC2003D716D /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1299BD248F8CC2003D716D /* SendMessageButton.swift */; };
+		3A1299C0248F8CF3003D716D /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1299BF248F8CF3003D716D /* KeepSwipingButton.swift */; };
 		3A1796C2248DDFEA00411E41 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1796C1248DDFEA00411E41 /* LoginController.swift */; };
 		3A1796C4248DE55D00411E41 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1796C3248DE55D00411E41 /* LoginViewModel.swift */; };
 		3A1796C6248DF1D800411E41 /* RegisteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1796C5248DF1D800411E41 /* RegisteringView.swift */; };
@@ -38,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		2509C229D80218EAA5E4AEDF /* Pods-SingLove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SingLove.debug.xcconfig"; path = "Target Support Files/Pods-SingLove/Pods-SingLove.debug.xcconfig"; sourceTree = "<group>"; };
+		3A1299BB248F5CDD003D716D /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		3A1299BD248F8CC2003D716D /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		3A1299BF248F8CF3003D716D /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		3A1796C1248DDFEA00411E41 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		3A1796C3248DE55D00411E41 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3A1796C5248DF1D800411E41 /* RegisteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteringView.swift; sourceTree = "<group>"; };
@@ -119,6 +125,9 @@
 				3AE0CA96247E3AE800B1AFDE /* InfoCell.swift */,
 				3AB71FFA247E5B4B00FBC4D4 /* AgeRangeCell.swift */,
 				3A1796C5248DF1D800411E41 /* RegisteringView.swift */,
+				3A1299BB248F5CDD003D716D /* MatchView.swift */,
+				3A1299BD248F8CC2003D716D /* SendMessageButton.swift */,
+				3A1299BF248F8CF3003D716D /* KeepSwipingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +334,8 @@
 				3AEF047A246C137B00A070B5 /* CardViewModel.swift in Sources */,
 				3AEF0472246BF60000A070B5 /* UIView-Layout.swift in Sources */,
 				3AB71FFB247E5B4B00FBC4D4 /* AgeRangeCell.swift in Sources */,
+				3A1299C0248F8CF3003D716D /* KeepSwipingButton.swift in Sources */,
+				3A1299BC248F5CDD003D716D /* MatchView.swift in Sources */,
 				3AE0CA97247E3AE800B1AFDE /* InfoCell.swift in Sources */,
 				3A8A32A6245053A1003DAA2E /* AppDelegate.swift in Sources */,
 				3A1796C2248DDFEA00411E41 /* LoginController.swift in Sources */,
@@ -337,6 +348,7 @@
 				3A8A32A8245053A1003DAA2E /* SceneDelegate.swift in Sources */,
 				3AEF0477246C098300A070B5 /* User.swift in Sources */,
 				3AEF3289248D111400718A20 /* SwipingPhotosController.swift in Sources */,
+				3A1299BE248F8CC2003D716D /* SendMessageButton.swift in Sources */,
 				3A8A32BC2450620B003DAA2E /* CustomTextField.swift in Sources */,
 				3A1796C4248DE55D00411E41 /* LoginViewModel.swift in Sources */,
 			);

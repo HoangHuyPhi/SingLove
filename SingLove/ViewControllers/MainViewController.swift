@@ -11,20 +11,23 @@ import Firebase
 import JGProgressHUD
 
 class MainViewController: UIViewController, CardViewDelegate , UserInfomationDelegate, LoginControllerDelegate {
-    
+
     let topStackView = TopNavigationStackView()
     let bottomStackView = MainBottomControlsStackView()
     let cardsView = UIView()
     var cardViewModels = [CardViewModel]()
     var user: User?
     private var lastFetchedUser: User?
+    private var topCardView: CardView?
+    private var previousCardView: CardView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         topStackView.settingButton.addTarget(self, action: #selector(presentInfoViewController), for: .touchUpInside)
         bottomStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
+        bottomStackView.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        bottomStackView.dislikeButton.addTarget(self, action: #selector(handleDisLike), for: .touchUpInside)
         setUpLayout()
-        fetchCurrentUser()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,22 +51,39 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
                 return
             }
             self.user = User(dictionary: dictionary)
+            self.fetchSwipes()
+        }
+    }
+    
+    var swipes = [String : Int]()
+    
+    private func fetchSwipes() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Firestore.firestore().collection("uid").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch swipes for currently user: ", err)
+                return
+            }
+            let data = snapshot?.data() as? [String: Int] ?? [:]
+            self.swipes = data
             self.fetchUsersFromFirestore()
         }
     }
     
     @objc private func handleRefresh() {
-        fetchUsersFromFirestore()
+        if topCardView == nil {
+            fetchCurrentUser()
+        }
     }
     
     private func fetchUsersFromFirestore() {
         let minAge = user?.minSeekingAge ?? UserInfomationViewController.defaultMinSeekingAge
         let maxAge = user?.maxSeekingAge ?? UserInfomationViewController.defaultMaxSeekingAge
-        
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Finding Matches"
         hud.show(in: view)
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
+        topCardView = nil
         query.getDocuments { (snapshot, error) in
             hud.dismiss()
             if let err = error {
@@ -73,21 +93,123 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
             snapshot?.documents.forEach({ (docsSnapshot) in
                 let userDict = docsSnapshot.data()
                 let user = User(dictionary: userDict)
-                if user.uid != Auth.auth().currentUser?.uid {
-                    self.cardViewModels.append(user.toCardViewModel())
-                    self.lastFetchedUser = user
-                    self.setUpViewCardsFromUsers(user)
+                let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
+                let hasNotSwipedBefore = self.swipes[user.uid!] == nil
+                if isNotCurrentUser && hasNotSwipedBefore {
+                    let cardView = self.setUpViewCardsFromUsers(user)
+                    self.previousCardView?.nextCardView = cardView
+                    self.previousCardView = cardView
+                    if self.topCardView == nil {
+                        self.topCardView = self.previousCardView
+                    }
                 }
             })
         }
     }
     
-    private func setUpViewCardsFromUsers(_ user: User) {
+    @objc func handleDisLike() {
+        saveSwipeInfomationToFireStore(didLike: 0)
+        performSwipeAnimation(translation: -700, Angle: -15)
+    }
+    
+    @objc func handleLike()  {
+        saveSwipeInfomationToFireStore(didLike: 1)
+        performSwipeAnimation(translation: 700, Angle: 15)
+    }
+    
+    private func saveSwipeInfomationToFireStore(didLike: Int) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        guard let cardUID = topCardView?.cardViewModel.uid else {
+            return
+        }
+        let documentData = [cardUID: didLike]
+        
+        Firestore.firestore().collection("swipes").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch swipe document: ", err)
+            }
+            if snapshot?.exists == true {
+                Firestore.firestore().collection("swipes").document(uid).updateData(documentData) { (err) in
+                    if let err = err {
+                        print("Failed to save upload data: ", err)
+                        return
+                    }
+                    if didLike == 1 {
+                        self.checkIfThereIsAmatch(with: cardUID)
+                    }
+                }
+            } else {
+                Firestore.firestore().collection("swipes").document(uid).setData(documentData) { (err) in
+                    if let err = err {
+                        print("Failed to save swipe data: ", err)
+                        return
+                    }
+                    if didLike == 1 {
+                        self.checkIfThereIsAmatch(with: cardUID)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func checkIfThereIsAmatch(with cardUID: String) {
+        Firestore.firestore().collection("swipes").document(cardUID).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch document for card user: ", err)
+                return
+            }
+            guard let data = snapshot?.data() else { return }
+            guard let currentUserUID = Auth.auth().currentUser?.uid else {return}
+            let hasMatched = data[currentUserUID] as? Int == 1
+            if hasMatched {
+                self.presentMatchView(cardUID: cardUID)
+            }
+        }
+    }
+    
+    private func presentMatchView(cardUID: String) {
+        let matchView = MatchView()
+        matchView.cardUID = cardUID
+        matchView.currentUser = self.user
+        view.addSubview(matchView)
+        matchView.fillSuperview()
+    }
+    
+    private func performSwipeAnimation(translation: CGFloat, Angle: CGFloat) {
+        let translationAnimation = CABasicAnimation(keyPath: "position.x")
+        translationAnimation.toValue = translation
+        translationAnimation.duration = 0.5
+        translationAnimation.fillMode = .forwards
+        translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        translationAnimation.isRemovedOnCompletion = false
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = Angle * CGFloat.pi / 180
+        rotationAnimation.duration = 0.5
+        let cardView = topCardView
+        topCardView = cardView?.nextCardView
+        CATransaction.setCompletionBlock {
+            cardView?.removeFromSuperview()
+        }
+        cardView?.layer.add(translationAnimation, forKey: "translation")
+        cardView?.layer.add(rotationAnimation, forKey: "rotation")
+        CATransaction.commit()
+    }
+    
+    func didRemoveCard(cardView: CardView) {
+          self.topCardView?.removeFromSuperview()
+          self.topCardView = self.topCardView?.nextCardView
+    }
+    
+    private func setUpViewCardsFromUsers(_ user: User) -> CardView {
         let cardView = CardView(frame: .zero)
         cardView.delegate = self
         cardView.cardViewModel = user.toCardViewModel()
         cardsView.addSubview(cardView)
+        cardsView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
+        return cardView
     }
     
     fileprivate func setupFirestoreUserCards() {
@@ -119,7 +241,9 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
     }
     
     func didSaveInfo() {
-        fetchCurrentUser()
+        if topCardView == nil {
+            fetchCurrentUser()
+        }
     }
     
     func didTapMoreInfo(cardViewModel: CardViewModel!) {
@@ -130,7 +254,9 @@ class MainViewController: UIViewController, CardViewDelegate , UserInfomationDel
     }
     
     func didFinishLoggingIn() {
-        fetchCurrentUser()
+        if topCardView == nil {
+            fetchCurrentUser()
+        }
     }
     
 }

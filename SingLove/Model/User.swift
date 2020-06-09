@@ -46,7 +46,7 @@ struct User: ProducesCardViewModel {
                 imageUrls.append(url!)
             }
         }
-        return CardViewModel(imageNames: imageUrls, attributedString: attributedText, textAlignment: .left)
+        return CardViewModel(imageNames: imageUrls, attributedString: attributedText, textAlignment: .left, uid: uid ?? "")
     }
 }
 
