@@ -21,3 +21,21 @@ adding Firebase (authentication, data storage, database), data pagination.
 May 27 2020: 
 Creating UserInfomation controller (name, photos, images, age range), and persisting data with Firestore
 Fixing bugs. 
+
+May 31, 2020: 
+Refactoring code, Adding age query to fetch user, fixing multiple bugs.
+
+Jun 7, 2020: 
+Create Swiping View Controller with images collection. 
+
+Jun 8, 2020: 
+Fix  swiping images in the User Details View Controller,
+Fix  Age Slider,
+Fix  default max, min ages,
+Fix  loading images with PageViewController.
+
+Jun 9, 2020: 
+Fix bugs for images caching. 
+
+Jun 10, 2020: 
+Create project proposal, readme file, demo video. 
